@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atelier Noura — أعمال يدوية من الخياطة</title>
+  <meta name="description" content="Atelier Noura — حقائب وإكسسوارات وملابس مصنوعة يدويًا بالخياطة، توصيل لكل ولايات الجزائر." />
+  <link rel="stylesheet" href="css/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-content">
+        <h1>Atelier Noura</h1>
+        <p data-i18n="hero.tagline">قطع مصنوعة بالخياطة اليدوية، بحب وتفصيل دقيق، من قلب الجزائر.</p>
+        <a href="products.html" class="btn btn-primary" data-i18n="hero.cta">اكتشفي المجموعة</a>
+      </div>
+      <div class="hero-image">
+        <img id="hero-image" src="" alt="Atelier Noura" />
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title"><h2 data-i18n="nav.products">المنتجات</h2></div>
+      <div class="category-grid" id="category-grid">
+        <div class="state-box"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <hr class="stitch-divider container" />
+
+    <section class="section container">
+      <div class="section-title"><h2 data-i18n="home.new_arrivals">وصل حديثًا</h2></div>
+      <div class="product-grid" id="new-arrivals-grid">
+        <div class="state-box"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title"><h2 data-i18n="home.best_sellers">الأكثر طلبًا</h2></div>
+      <div class="product-grid" id="best-sellers-grid">
+        <div class="state-box"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <hr class="stitch-divider container" />
+
+    <section class="section container" id="story-section" style="max-width: 780px;">
+      <h2 data-i18n="home.our_story">قصتنا</h2>
+      <p id="store-about-text"></p>
+    </section>
+
+    <section class="section container" id="testimonials-section" style="display:none;">
+      <div class="section-title"><h2 data-i18n="home.testimonials">آراء زبائننا</h2></div>
+      <div class="product-grid" id="testimonials-grid"></div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title"><h2 data-i18n="home.faq_title">الأسئلة الشائعة</h2></div>
+      <div id="faq-list"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/header-footer.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
