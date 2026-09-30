@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المنتجات — Atelier Noura</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .products-layout { display: grid; grid-template-columns: 240px 1fr; gap: 28px; align-items: start; }
+    .filters-panel { background: var(--color-white); border: 1px solid var(--color-beige); border-radius: var(--radius-md); padding: 18px; position: sticky; top: 90px; }
+    .filters-panel h4 { margin-bottom: 10px; font-size: 0.9rem; }
+    .filter-group { margin-bottom: 20px; }
+    .filter-group label.checkline { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; margin-bottom: 6px; cursor: pointer; }
+    @media (max-width: 860px) { .products-layout { grid-template-columns: 1fr; } .filters-panel { position: static; } }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container section">
+    <div class="form-group" style="max-width:420px;">
+      <input type="search" id="search-input" class="form-control" data-i18n-placeholder="nav.search_placeholder" placeholder="ابحثي عن منتج..." />
+    </div>
+
+    <div class="products-layout">
+      <aside class="filters-panel">
+        <div class="filter-group">
+          <h4 data-i18n="filters.category">التصنيف</h4>
+          <div id="category-filters"></div>
+        </div>
+        <div class="filter-group">
+          <h4 data-i18n="filters.price">السعر</h4>
+          <div class="form-row" style="grid-template-columns:1fr 1fr;">
+            <input type="number" id="price-min" class="form-control" placeholder="من" min="0" />
+            <input type="number" id="price-max" class="form-control" placeholder="إلى" min="0" />
+          </div>
+        </div>
+        <div class="filter-group">
+          <h4 data-i18n="filters.availability">التوفر</h4>
+          <label class="checkline"><input type="checkbox" id="filter-in-stock" checked /> <span data-i18n="product.out_of_stock" style="display:none"></span><span id="in-stock-label">متوفر فقط</span></label>
+        </div>
+        <div class="filter-group">
+          <h4 data-i18n="filters.sort">ترتيب حسب</h4>
+          <select id="sort-select" class="form-control">
+            <option value="newest">الأحدث</option>
+            <option value="price_asc">السعر: من الأقل</option>
+            <option value="price_desc">السعر: من الأعلى</option>
+          </select>
+        </div>
+        <button class="btn btn-outline btn-block" id="apply-filters">تطبيق</button>
+      </aside>
+
+      <div>
+        <div id="products-grid" class="product-grid">
+          <div class="state-box"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/header-footer.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

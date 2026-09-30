@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="checkout.title">إتمام الطلب — Atelier Noura</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .checkout-layout { display: grid; grid-template-columns: 1fr 340px; gap: 30px; align-items: start; }
+    .summary-box { background: var(--color-white); border: 1px solid var(--color-beige); border-radius: var(--radius-md); padding: 20px; position: sticky; top: 90px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.92rem; }
+    .summary-row.total { font-weight: 700; font-size: 1.1rem; border-top: 1px dashed var(--color-beige); padding-top: 10px; }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; margin: 16px 0; }
+    #address-fieldset { transition: opacity var(--transition-base); }
+    @media (max-width: 860px) { .checkout-layout { grid-template-columns: 1fr; } .summary-box { position: static; } }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container section">
+    <h1 data-i18n="checkout.title">إتمام الطلب</h1>
+
+    <div id="checkout-empty" style="display:none;" class="state-box">
+      <p data-i18n="cart.empty">سلتك فارغة حاليًا</p>
+      <a href="products.html" class="btn btn-primary" data-i18n="cart.continue_shopping">متابعة التسوق</a>
+    </div>
+
+    <form id="checkout-form" class="checkout-layout">
+      <div>
+        <div class="form-group">
+          <label data-i18n="checkout.full_name">الاسم الكامل</label>
+          <input type="text" id="f-name" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="checkout.phone">رقم الهاتف</label>
+          <input type="tel" id="f-phone" class="form-control" required pattern="[0-9+ ]{9,14}" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-i18n="checkout.wilaya">الولاية</label>
+            <select id="f-wilaya" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="checkout.commune">البلدية</label>
+            <div id="commune-wrap"><input type="text" id="f-commune" class="form-control" required disabled /></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="checkout.delivery_method">طريقة التوصيل</label>
+          <select id="f-method" class="form-control">
+            <option value="home" data-i18n="checkout.home_delivery">التوصيل إلى المنزل</option>
+            <option value="office" data-i18n="checkout.office_delivery">الاستلام من المكتب</option>
+          </select>
+        </div>
+        <div class="form-group" id="address-fieldset">
+          <label data-i18n="checkout.address">العنوان التفصيلي</label>
+          <textarea id="f-address" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label data-i18n="checkout.notes">ملاحظات إضافية (اختياري)</label>
+          <textarea id="f-notes" class="form-control" rows="2"></textarea>
+        </div>
+        <p class="form-error" id="checkout-error" style="display:none;"></p>
+      </div>
+
+      <div class="summary-box">
+        <h3>ملخص الطلب</h3>
+        <div id="summary-items"></div>
+        <hr class="stitch-divider" style="margin:14px 0;" />
+        <div class="summary-row"><span data-i18n="cart.subtotal">المجموع</span><strong id="sum-subtotal">—</strong></div>
+        <div class="summary-row"><span data-i18n="checkout.delivery_price">سعر التوصيل</span><strong id="sum-delivery">—</strong></div>
+        <div class="summary-row total"><span data-i18n="checkout.total">المبلغ الإجمالي</span><strong id="sum-total">—</strong></div>
+
+        <label class="checkbox-row">
+          <input type="checkbox" id="f-agree" required />
+          <span data-i18n="checkout.agree_policy">أوافق على سياسة الخصوصية وشروط الطلب</span>
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn" data-i18n="checkout.submit">تأكيد الطلب</button>
+      </div>
+    </form>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/header-footer.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
